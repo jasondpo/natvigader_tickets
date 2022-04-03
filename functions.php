@@ -4,6 +4,10 @@ if(isset($_POST['submitTicketBtn'])){
     submitTicket();
 };
 
+if(isset($_POST['deleteTicketBtn'])){
+    deleteTicket();
+};
+
 function submitTicket(){
 
     $dtz = new DateTimeZone("America/New_York");
@@ -56,5 +60,23 @@ function submitTicket(){
 }
 
 function deleteTicket(){
-    //  unset($old_tickets_array[1]);  
+    // Create new array from selected tickets
+    // Compare new array with stored array using array_diff()
+    // The result should return only what is not identical
+    // Upload resulting array
+
+    $tickets = file_get_contents('ticket_data/ticket_data.json');  
+    $tickets = json_decode($tickets, true); 
+
+    foreach($tickets as $key => $ticket) {
+        if($ticket['ticket']=='DIXI210690'){
+            unset($tickets[$key]);
+        }
+    }
+
+    $revised_ticket_list = json_encode($tickets);
+    if(file_put_contents('ticket_data/ticket_data.json', $revised_ticket_list))  
+    {  
+         echo "<label class='text-success'>Ticket has been deleted, hopefully.</p>";  
+    } 
 }

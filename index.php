@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <form action="success.php" method="post" name="natvigader-email" id="natvigader-email">
+    <form action="success.php" method="post" name="natvigader-ticket" id="natvigader-ticket">
 
         <label for="fname">First name</label><br>
         <input type="text" id="fname" name="fname">
