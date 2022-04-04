@@ -1,45 +1,47 @@
 <?php 
     include 'functions.php'; 
+    include 'includes/head.php'; 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
+<body class="nat-dashboard">
 
-<?php
-  $getFeedBack = file_get_contents('ticket_data/ticket_data.json');  
-  $feedBacks = json_decode($getFeedBack, true);
-  foreach(array_reverse($feedBacks) as $key => $feedBack) {
-        echo $key;
+  <?php include 'includes/header.php'; ?>
 
-        echo $feedBack['timestamp'];
-        
-        echo $feedBack['ticket'];
+  <div class="delete-success"></div>
 
-        echo $feedBack['subject'];
+  <div class="container">
 
-        echo $feedBack['fname'];
-
-        echo $feedBack['lname'];
+     <!-- Left Column STARTS -->
+    <div class="leftCol">
     
-        echo $feedBack['branch'];
+      <div class="ticket-container">
 
-        echo $feedBack['comment'];
-  }
-?>
+        <?php displayTicketList(); ?>
 
-<form action="ticketDeleted.php" method="post" name="delete-ticket" id="delete-ticket">
+      </div>
+    
+    </div> <!-- Left Column Ends -->
 
-  <input type="submit" name="deleteTicketBtn" value="Delete Ticket">
+    <!-- Right Column STARTS -->
+    <div class="rightCol">
+      <div class="content-header"></div>
+      <div class="content-host">
+        
+      </div>
 
-</form>
+      <form action="dashboard.php"  name="delete-ticket" id="delete-ticket" onsubmit="return verifyDeletedTicket()" method="post">
 
+        <input type="text" id="deleteThisTicket" name="deleteThisTicket">
+
+        <input type="submit" id="deleteTicketBtn" name="deleteTicketBtn" value="Delete Ticket">
+
+      </form>
+
+    </div> <!-- Right Column Ends -->
+  
+  </div> <!-- Container Ends -->
+ 
+  <?php include "includes/footer.php"; ?>
 
 </body>
 </html>

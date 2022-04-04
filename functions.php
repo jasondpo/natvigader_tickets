@@ -59,6 +59,7 @@ function submitTicket(){
     }  
 }
 
+// For Dashboard page
 function deleteTicket(){
     // Create new array from selected tickets
     // Compare new array with stored array using array_diff()
@@ -69,7 +70,7 @@ function deleteTicket(){
     $tickets = json_decode($tickets, true); 
 
     foreach($tickets as $key => $ticket) {
-        if($ticket['ticket']=='DIXI210690'){
+        if($ticket['ticket']==$_POST["deleteThisTicket"]){
             unset($tickets[$key]);
         }
     }
@@ -77,6 +78,31 @@ function deleteTicket(){
     $revised_ticket_list = json_encode($tickets);
     if(file_put_contents('ticket_data/ticket_data.json', $revised_ticket_list))  
     {  
-         echo "<label class='text-success'>Ticket has been deleted, hopefully.</p>";  
+         echo "<div class='delete-success'>Ticket has been deleted.</div>";
+         echo "<script>history.pushState({}, '', '')</script>";  
     } 
+}
+
+// Displays on Dashboard
+function displayTicketList(){
+    $getFeedBack = file_get_contents('ticket_data/ticket_data.json');  
+    $feedBacks = json_decode($getFeedBack, true);
+    foreach($feedBacks as $key => $feedBack) {
+
+        echo "<div class='single-ticket-container'>";
+
+        echo "<div class='key'>".$key."</div>";
+
+        echo "<div class='timestamp'>".$feedBack['timestamp']."</div>";
+        
+        echo "<div class='ticket'>".$feedBack['ticket']."</div>";
+
+        echo "<div class='clerkName'>".$feedBack['fname']." ".$feedBack['lname']." &ndash; ".$feedBack['branch']."</div><br /><br />";
+
+        echo "<div class='subject'>".$feedBack['subject']."</div>";
+
+        echo "<div class='comment'>".$feedBack['comment']."</div>";
+
+        echo "</div>";
+    }
 }
