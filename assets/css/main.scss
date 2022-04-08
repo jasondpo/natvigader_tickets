@@ -9,7 +9,7 @@ DIRECTORY
 
 .03 Home
 
-.04 Search
+.04 Custom Srcollbar
 
 .05 Content
 
@@ -23,7 +23,10 @@ DIRECTORY
     --white: #fff;
     --background: #f6f6f6;
     --border: #e1e1e1;
-  }
+    --lightBlue: #42708C;
+    --alert:#fffdd9;
+    --alertBorder:#ffeeba;
+}
 
 html, body{
     margin: 0;
@@ -56,7 +59,7 @@ html, body{
     position: fixed;
     z-index: 1;
     inset: 0 0 0 0;
-    background-color: blue;
+    background-color: var(--lightBlue);
     height: 60px;
 }
 
@@ -70,12 +73,35 @@ html, body{
 .nat-dashboard{
     background-color: var(--background);
 
-    .delete-success{
+    .deleted-ticket-alert-bar{
         position: absolute;
         display: none;
         inset: 60px 0 0 0;
         height: 40px;
-        background-color: yellow;
+        background-color: var(--alert);
+        border-color: var(--alertBorder);
+
+        span{
+            position: absolute;
+            z-index: 2;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            background-color: #f90;
+            cursor: pointer;
+            top:50%;
+            right: 20px;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        div{
+            position: relative;
+            top:50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            text-align: center;
+        }
     }
 
     .container{
@@ -91,9 +117,11 @@ html, body{
 
             .ticket-container{
                 position: absolute;
-                inset: 0 0 0 0;
+                inset: 50px 0 30px 0;
+                border: 1px solid var(--border);
                 overflow-x: hidden;
                 background-color: var(--white);
+                border-radius: 6px;
 
                 .single-ticket-container{
                     position: relative;
@@ -183,4 +211,31 @@ html, body{
 
 /*--------------------------------------------------------------
 .03 Home ENDS
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+.04 Custom Srcollbar STARTS
+--------------------------------------------------------------*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+/*--------------------------------------------------------------
+.04 Custom Srcollbar ENDS
 --------------------------------------------------------------*/

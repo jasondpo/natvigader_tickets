@@ -7,7 +7,10 @@
 
   <?php include 'includes/header.php'; ?>
 
-  <div class="delete-success"></div>
+  <div class="deleted-ticket-alert-bar">
+    <span></span>
+    <div></div>
+  </div>
 
   <div class="container">
 
@@ -29,7 +32,7 @@
         
       </div>
 
-      <form action="dashboard.php"  name="delete-ticket" id="delete-ticket" onsubmit="return verifyDeletedTicket()" method="post">
+      <form action="dashboard.php"  name="delete-ticket" id="delete-ticket" onsubmit="return showDeletedTicketInfo()" method="post">
 
         <input type="text" id="deleteThisTicket" name="deleteThisTicket">
 

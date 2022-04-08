@@ -61,16 +61,11 @@ function submitTicket(){
 
 // For Dashboard page
 function deleteTicket(){
-    // Create new array from selected tickets
-    // Compare new array with stored array using array_diff()
-    // The result should return only what is not identical
-    // Upload resulting array
-
     $tickets = file_get_contents('ticket_data/ticket_data.json');  
     $tickets = json_decode($tickets, true); 
 
     foreach($tickets as $key => $ticket) {
-        if($ticket['ticket']==$_POST["deleteThisTicket"]){
+        if($ticket['ticket']==$_POST["deleteThisTicket"]){ // ticket is ticket number
             unset($tickets[$key]);
         }
     }
