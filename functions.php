@@ -84,7 +84,7 @@ function displayTicketList(){
     $feedBacks = json_decode($getFeedBack, true);
     foreach($feedBacks as $key => $feedBack) {
 
-        echo "<div class='single-ticket-container'>";
+        echo "<div class='single-ticket-container' data-ticket='".$feedBack['ticket']."'>";
 
         echo "<div class='key'>".$key."</div>";
 

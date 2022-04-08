@@ -7,7 +7,7 @@
 
   <?php include 'includes/header.php'; ?>
 
-  <div class="deleted-ticket-alert-bar">
+  <div class="deleted-ticket-alert-bar" id="test" data-wtf="1234">
     <span></span>
     <div></div>
   </div>
@@ -32,7 +32,7 @@
         
       </div>
 
-      <form action="dashboard.php"  name="delete-ticket" id="delete-ticket" onsubmit="return showDeletedTicketInfo()" method="post">
+      <form action="dashboard.php" name="delete-ticket" id="delete-ticket" onsubmit="return showDeletedTicketInfo()" method="post">
 
         <input type="text" id="deleteThisTicket" name="deleteThisTicket">
 

@@ -49,6 +49,10 @@ html, body {
   display: block !important;
 }
 
+.dehighlight {
+  background-color: #f90 !important;
+}
+
 /*--------------------------------------------------------------
 .AA GLOBAL ENDS
 --------------------------------------------------------------*/
