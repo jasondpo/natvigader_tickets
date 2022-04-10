@@ -43,19 +43,38 @@ setInterval(function() {
 
 
 // Save clicked/viewed tickets in localStorage
-// Append to existing tickets -- currently over-writes existing tickets
-let viewedTickets = [];
+let storeClickedTicket = [];
 $('body').on('click', '.single-ticket-container', function() {
-    let clickedTicket = $(this).find('.ticket').text();
-    viewedTickets.push(clickedTicket)
-    console.log(viewedTickets);
-    localStorage.setItem("viewedTickets", JSON.stringify(viewedTickets));
+    if(!$(this).hasClass("dehighlight")){
+        let clickedTicket = $(this).find('.ticket').text();
+        storeClickedTicket.push(clickedTicket)
+        localStorage.setItem("storeClickedTicket", JSON.stringify(storeClickedTicket));
+    };
 });
+
+// On Refresh combine "viewedTickets" with "storedTickets"
+function combine(){
+    // localStorage.removeItem('storeClickedTicket');
+    // localStorage.removeItem('viewedTickets');
+    let prevTickets = JSON.parse(localStorage.getItem("storeClickedTicket"));
+    let usedTickets = JSON.parse(localStorage.getItem("viewedTickets"))
+    if(prevTickets!=null){
+        let bothTickets = prevTickets.concat(usedTickets);
+        bothTickets = bothTickets.filter( function( item, index, inputArray ) {
+            return inputArray.indexOf(item) == index;
+        })
+        localStorage.setItem("viewedTickets", JSON.stringify(bothTickets))
+    }   
+}
+combine();
+
+
 
 // Retrieve clicked/viewed tickets in localStorage
 let viewedTicketsRetrieved = JSON.parse(localStorage.getItem("viewedTickets"));
 
-// Check if stored clicked/viewed tickets still exist in ticket-container div
+
+// Check if stored clicked/viewed tickets match any existing tickets in ticket-container div
 let ticketsCurrentlyInContainerDiv = [];
 
 $(".ticket").each(function(){
@@ -63,16 +82,17 @@ $(".ticket").each(function(){
 });
 
 let matchingTickets = []
-viewedTicketsRetrieved.forEach(val=>{
-
-    if(ticketsCurrentlyInContainerDiv.includes(val)){
-        matchingTickets.push(val);
-    }
-})
-
+if(viewedTicketsRetrieved != null){
+    viewedTicketsRetrieved.forEach(val=>{
+        if(ticketsCurrentlyInContainerDiv.includes(val)){
+            matchingTickets.push(val);
+        }
+    })
+}
 console.log(matchingTickets)
+localStorage.setItem("viewedTickets", JSON.stringify(matchingTickets))
 
-// Apply class to any ticket inside ticket container div that matches stored ticket
+// Apply class to tickets inside ticket container div that matches stored ticket
 matchingTickets.forEach(tickNo=>{
     $(".single-ticket-container").each(function(){
         if($(this).data('ticket')==tickNo){
@@ -82,5 +102,5 @@ matchingTickets.forEach(tickNo=>{
     });
 });
 
-// Erase any stored ticket that does not have a corresponding ticket inside ticket-container div
+// Delete stored tickets that don't match tickets inside ticket-container div
 
