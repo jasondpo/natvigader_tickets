@@ -86,6 +86,8 @@ function displayTicketList(){
 
         echo "<div class='single-ticket-container' data-ticket='".$feedBack['ticket']."'>";
 
+        echo "<div class='profileInitials'><span>".strtoupper($feedBack['fname'][0]).strtoupper($feedBack['lname'][0])."</span></div>";
+
         echo "<div class='key'>".$key."</div>";
 
         echo "<div class='timestamp'>".$feedBack['timestamp']."</div>";

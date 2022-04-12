@@ -1,9 +1,43 @@
+// Assign colors to profile initials inside single-ticket-containers
+let orange = "ABCD";
+let red = "EFGH";
+let blue = "IJKL";
+let purple = "MNOP";
+let green = "QRST";
+let yellow = "UVWX";
+let black = "YZ";
+$(".profileInitials").each(function(){
+    if(orange.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#f90")
+    }
+    if(red.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#f30")
+    }
+    if(blue.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#3F8EBC")
+    }
+    if(purple.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#665BFF")
+    }
+    if(green.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#36CA00")
+    }
+    if(yellow.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#FFE62B")
+    }
+    if(black.includes($(this).text().slice(0,1))){
+        $(this).css("background-color","#000000")
+    }
+});
+
+
+
+// Transfer Ticket Information into content-host div
 var ticketNum;
 var timeStamp;
 var subject;
 var clerk;
 
-// Transfer Ticket Information into content-host div
 $('body').on('click', '.single-ticket-container', function() {
     ticketNum= $(this).find('.ticket').text();
     timeStamp= $(this).find('.timestamp').text();
@@ -73,7 +107,6 @@ combine();
 // Retrieve clicked/viewed tickets in localStorage
 let viewedTicketsRetrieved = JSON.parse(localStorage.getItem("viewedTickets"));
 
-
 // Check if stored clicked/viewed tickets match any existing tickets in ticket-container div
 let ticketsCurrentlyInContainerDiv = [];
 
@@ -96,11 +129,9 @@ localStorage.setItem("viewedTickets", JSON.stringify(matchingTickets))
 matchingTickets.forEach(tickNo=>{
     $(".single-ticket-container").each(function(){
         if($(this).data('ticket')==tickNo){
-            // $(this).fadeOut('slow');
             $(this).addClass('dehighlight');
         };
     });
 });
 
-// Delete stored tickets that don't match tickets inside ticket-container div
 
