@@ -12,7 +12,7 @@ function submitTicket(){
 
     $dtz = new DateTimeZone("America/New_York");
     $dt = new DateTime("now", $dtz);
-    $timestamp = $dt->format("D n/j, g:i a");
+    $timestamp = $dt->format("D n/j, g:i A");
     $clerkLocation = strtoupper(substr($_POST["branch"], 0, 4));
     $ticketNum = rand(100000, 999999);
     $ticketNum = $clerkLocation.$ticketNum;

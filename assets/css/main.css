@@ -25,6 +25,8 @@ DIRECTORY
   --lightBlue: #42708C;
   --alert: #fffdd9;
   --alertBorder: #ffeeba;
+  --selected: #E1ECF8;
+  --hover: #FAF9F8;
 }
 
 html, body {
@@ -45,7 +47,7 @@ html, body {
   margin: auto;
 }
 
-#delete-ticket {
+#deleteThisTicket {
   display: none;
 }
 
@@ -61,6 +63,10 @@ html, body {
 
 .dehighlight .profileInitials {
   background-color: #CCC !important;
+}
+
+.selectedTicket {
+  background-color: var(--selected) !important;
 }
 
 /*--------------------------------------------------------------
@@ -204,6 +210,10 @@ html, body {
 
 .nat-dashboard .container .leftCol .ticket-container .single-ticket-container:last-of-type {
   border-bottom: 1px solid var(--border);
+}
+
+.nat-dashboard .container .leftCol .ticket-container .single-ticket-container:hover {
+  background-color: var(--hover);
 }
 
 .nat-dashboard .container .rightCol {

@@ -79,10 +79,14 @@ setInterval(function() {
 // Save clicked/viewed tickets in localStorage
 let storeClickedTicket = [];
 $('body').on('click', '.single-ticket-container', function() {
+    $('.single-ticket-container').removeClass('selectedTicket');
     if(!$(this).hasClass("dehighlight")){
+        $(this).addClass('selectedTicket dehighlight');
         let clickedTicket = $(this).find('.ticket').text();
         storeClickedTicket.push(clickedTicket)
         localStorage.setItem("storeClickedTicket", JSON.stringify(storeClickedTicket));
+    }else{
+        $(this).addClass('selectedTicket');
     };
 });
 

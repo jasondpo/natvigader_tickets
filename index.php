@@ -24,19 +24,19 @@
             <label for="branch">Branch/ Department</label><br>
             <select id="branch" name="branch">
                 <option value="" selected>Select</option>
-                <option value="call">Call Center</option>
-                <option value="dealers">Dealers Department</option>
-                <option value="dixie">Dixie Branch</option>
-                <option value="downown">Downtown Branch</option>
-                <option value="east">East Branch</option>
-                <option value="fairdale">Fairdale Branch</option>
-                <option value="highview">Highview Branch</option>
-                <option value="jeffersontown">Jeffersontown Branch</option>
-                <option value="lien">Lien Department</option>
-                <option value="records">MV Records</option>
-                <option value="processing">Processing Center</option>
-                <option value="west">West Branch</option>
-                <option value="westport">Westport Branch</option>
+                <option value="Call">Call Center</option>
+                <option value="Dealers">Dealers Department</option>
+                <option value="Dixie">Dixie Branch</option>
+                <option value="Downown">Downtown Branch</option>
+                <option value="East">East Branch</option>
+                <option value="Fairdale">Fairdale Branch</option>
+                <option value="Highview">Highview Branch</option>
+                <option value="Jeffersontown">Jeffersontown Branch</option>
+                <option value="Lien">Lien Department</option>
+                <option value="Records">MV Records</option>
+                <option value="Processing">Processing Center</option>
+                <option value="West">West Branch</option>
+                <option value="Westport">Westport Branch</option>
             </select>
 
             <br><br>
