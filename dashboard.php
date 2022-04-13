@@ -8,7 +8,7 @@
   <?php include 'includes/header.php'; ?>
 
   <div class="deleted-ticket-alert-bar" id="test" data-wtf="1234">
-    <span></span>
+    <span>&#10005;</span>
     <div></div>
   </div>
 
@@ -29,7 +29,10 @@
     <div class="rightCol">
       <div class="content-header"></div>
       <div class="content-host">
-        
+        <div class="content-host-profile"></div>
+        <div class="content-host-ticket-name"></div>
+        <div class="content-host-ticket-timestamp"></div>
+        <div class="content-host-message"></div>
       </div>
 
       <form action="dashboard.php" name="delete-ticket" id="delete-ticket" onsubmit="return showDeletedTicketInfo()" method="post">

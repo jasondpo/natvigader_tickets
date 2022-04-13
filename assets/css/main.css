@@ -104,16 +104,26 @@ html, body {
 
 .nat-dashboard .deleted-ticket-alert-bar span {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #aeae85;
   z-index: 2;
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background-color: #f90;
   cursor: pointer;
   top: 50%;
   right: 20px;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  transition: background-color linear .15s;
+}
+
+.nat-dashboard .deleted-ticket-alert-bar span:hover {
+  background-color: #ededc4;
+  color: #aeae85;
 }
 
 .nat-dashboard .deleted-ticket-alert-bar div {
@@ -222,25 +232,64 @@ html, body {
 }
 
 .nat-dashboard .container .rightCol .content-header {
+  margin: 15px 0 0 15px;
   display: block;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
 }
 
 .nat-dashboard .container .rightCol .content-host {
   position: absolute;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 25px 15px 0 60px;
   inset: 50px 0 30px 0;
   background-color: var(--white);
   border: 1px solid var(--border);
   border-radius: 6px;
 }
 
+.nat-dashboard .container .rightCol .content-host .content-host-profile {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  top: 20px;
+  left: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #CCC;
+}
+
+.nat-dashboard .container .rightCol .content-host .content-host-ticket-name {
+  display: block;
+}
+
+.nat-dashboard .container .rightCol .content-host .content-host-ticket-timestamp {
+  display: block;
+}
+
+.nat-dashboard .container .rightCol .content-host .content-host-message {
+  display: block;
+  margin: 20px 0 0 0;
+}
+
 .nat-dashboard .container .rightCol #deleteTicketBtn {
   position: absolute;
   bottom: 0;
   right: 0;
+  border-width: 0;
+  background-color: red;
+  height: 22px;
+  width: 100px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nat-dashboard .container .rightCol #deleteTicketBtn:hover {
+  background-color: #cb0000;
 }
 
 /*--------------------------------------------------------------

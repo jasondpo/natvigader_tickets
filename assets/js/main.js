@@ -32,20 +32,27 @@ $(".profileInitials").each(function(){
 
 
 
-// Transfer Ticket Information into content-host div
+// Transfer Ticket Information into content-host sub DIVs
 var ticketNum;
+var clerk;
 var timeStamp;
 var subject;
-var clerk;
+var message;
+var profile;
 
 $('body').on('click', '.single-ticket-container', function() {
-    ticketNum= $(this).find('.ticket').text();
-    timeStamp= $(this).find('.timestamp').text();
-    subject= $(this).find('.subject').text();
-    clerk= $(this).find('.clerkName').text();
-    $(".content-host").html(ticketNum+ " "+timeStamp);
+    ticketNum = $(this).find('.ticket').text();
+    timeStamp = $(this).find('.timestamp').text();
+    subject = $(this).find('.subject').text();
+    clerk = $(this).find('.clerkName').text();
+    message = $(this).find('.comment').text();
+    profile = $(this).find('.profileInitials').text();
     $(".content-header").html(subject);
+    $(".content-host-ticket-name").html(clerk);
+    $(".content-host-ticket-timestamp").html(timeStamp);
+    $(".content-host-message").html(message);
     $("#deleteThisTicket").val(ticketNum);
+    $(".content-host-profile").html(profile);
 });
 
 function showDeletedTicketInfo(){
