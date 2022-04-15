@@ -229,6 +229,15 @@ html, body{
                 font-weight: 400;
             }
 
+            .status-container{
+                position: absolute;
+                text-align: right;
+                top:15px;
+                right:0;
+                width: 200px;
+                height: 25px;
+            }
+
             .content-host{
                 position: absolute;
                 box-sizing: border-box;
@@ -237,6 +246,7 @@ html, body{
                 background-color: var(--white);
                 border:1px solid var(--border);
                 border-radius: 6px;
+                overflow-x: hidden;
 
                 .content-host-profile{
                     position: absolute;
@@ -260,16 +270,40 @@ html, body{
                     display: block;
                 }
 
-                .content-host-message{
+                .content-host-incident{
+                    display: block;
+                    box-sizing: border-box;
+                    padding: 0 0 20px 0;
+                    min-height: 200px;
+                    margin: 20px 0 0 0;
+                }
+                .content-host-solution{
+                    position: relative;
+                    border-top: 1px solid var(--border);
                     display: block;
                     margin: 20px 0 0 0;
+
+                    #solutionInput{
+                        width: calc(100% - 10px);
+                        box-sizing: border-box;
+                        padding: 10px;
+                        resize: none;
+                        height: 400px;
+                        border: none;
+                        font-size: 14px;
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    #solutionInput:hover{
+                        border:1px solid var(--border);
+                        padding: 9px;
+                    }
                 }
             }
 
             #deleteTicketBtn{
                 position: absolute;
                 bottom:0;
-                right: 0;
+                left: 0;
                 border-width: 0;
                 background-color: red;
                 height: 22px;
@@ -280,6 +314,19 @@ html, body{
             }
             #deleteTicketBtn:hover{
                 background-color: rgb(203, 0, 0);  
+            }
+
+            #updateTicketBtn{
+                position: absolute;
+                bottom:0;
+                right: 0;
+                border-width: 0;
+                background-color: #CCC;
+                height: 22px;
+                width: 100px;
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
             }
         }
     }

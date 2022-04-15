@@ -50,7 +50,7 @@ $('body').on('click', '.single-ticket-container', function() {
     $(".content-header").html(subject);
     $(".content-host-ticket-name").html(clerk);
     $(".content-host-ticket-timestamp").html(timeStamp);
-    $(".content-host-message").html(message);
+    $(".content-host-incident").html(message);
     $("#deleteThisTicket").val(ticketNum);
     $(".content-host-profile").html(profile);
 });
@@ -95,6 +95,7 @@ $('body').on('click', '.single-ticket-container', function() {
     }else{
         $(this).addClass('selectedTicket');
     };
+    showTicketStatus();
 });
 
 // On Refresh combine "viewedTickets" with "storedTickets"
@@ -145,4 +146,17 @@ matchingTickets.forEach(tickNo=>{
     });
 });
 
+
+// Show Ticket status
+function showTicketStatus(){
+    let getTicketNo = $("#deleteThisTicket").val();
+    $.getJSON("ticket_data/ticket_data.json", function(data) {
+        $.each(data, function(i, data){
+            if(data.ticket==getTicketNo){
+                $("#ticketStatus").val(data.status);
+                $("#solutionInput").text(data.solution);
+            }
+        });
+    });  
+}
 

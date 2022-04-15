@@ -1,4 +1,6 @@
 <?php
+// Data is not saved when json file is completely empty.
+
 
 if(isset($_POST['submitTicketBtn'])){
     submitTicket();
@@ -6,6 +8,10 @@ if(isset($_POST['submitTicketBtn'])){
 
 if(isset($_POST['deleteTicketBtn'])){
     deleteTicket();
+};
+
+if(isset($_POST['updateTicketBtn'])){
+    updateTicket();
 };
 
 function submitTicket(){
@@ -23,14 +29,17 @@ function submitTicket(){
          $old_tickets_array = json_decode($old_tickets, true);
          $newTicket = array(
             'timestamp'  =>  $timestamp,
-            'ticket'  =>  $ticketNum, 
+            'ticket'  =>  $ticketNum,
+            'status'  =>  "Opened",  
             'subject' =>  $_POST["subject"], 
             'fname'   =>  $_POST["fname"],
             'lname'   =>  $_POST["lname"],    
             'branch'  =>  $_POST["branch"],  
-            'comment' =>  $_POST["comment"]  
+            'comment' =>  $_POST["comment"],
+            'solution' =>  $_POST["solution"]   
          ); 
          array_push($old_tickets_array, $newTicket);
+         $old_tickets_array = array_values($old_tickets_array);
          $updated_ticket_list = json_encode($old_tickets_array);  
          if(file_put_contents('ticket_data/ticket_data.json', $updated_ticket_list))  
          {  
@@ -44,13 +53,16 @@ function submitTicket(){
         $newTicket = array(  
             'timestamp'  =>  $timestamp,
             'ticket'  =>  $ticketNum,
+            'status'  =>  "Opened", 
             'subject' =>  $_POST["subject"],   
             'fname'   =>  $_POST["fname"],
             'lname'   =>  $_POST["lname"],    
             'branch'  =>  $_POST["branch"],  
-            'comment' =>  $_POST["comment"]  
+            'comment' =>  $_POST["comment"],
+            'solution' =>  $_POST["solution"] 
        );
-       array_push($old_tickets_array, $newTicket);   
+       array_push($old_tickets_array, $newTicket);
+       $old_tickets_array = array_values($old_tickets_array);   
        $updated_ticket_list = json_encode($old_tickets_array);  
        if(file_put_contents('ticket_data/ticket_data.json', $updated_ticket_list))  
        {  
@@ -102,4 +114,22 @@ function displayTicketList(){
 
         echo "</div>";
     }
+}
+
+
+//Update Ticket
+
+function updateTicket(){
+    $getFeedBack = file_get_contents('ticket_data/ticket_data.json');
+    $feedBacks = json_decode($getFeedBack, true);
+
+    foreach($feedBacks as &$feedBack) {
+        if($feedBack['ticket'] == $_POST["deleteThisTicket"]){
+            $feedBack['status'] = $_POST["ticketStatus"];
+            $feedBack['solution'] = $_POST["solutionInput"];
+        }
+    }
+    
+    $postFeedBack = json_encode($feedBacks);
+    file_put_contents('ticket_data/ticket_data.json', $postFeedBack); 
 }
