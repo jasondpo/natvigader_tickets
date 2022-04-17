@@ -77,7 +77,7 @@ function deleteTicket(){
     $tickets = json_decode($tickets, true); 
 
     foreach($tickets as $key => $ticket) {
-        if($ticket['ticket']==$_POST["deleteThisTicket"]){ // ticket is ticket number
+        if($ticket['ticket']==$_POST["activeTicket"]){ // ticket is ticket number
             unset($tickets[$key]);
         }
     }
@@ -124,7 +124,7 @@ function updateTicket(){
     $feedBacks = json_decode($getFeedBack, true);
 
     foreach($feedBacks as &$feedBack) {
-        if($feedBack['ticket'] == $_POST["deleteThisTicket"]){
+        if($feedBack['ticket'] == $_POST["activeTicket"]){
             $feedBack['status'] = $_POST["ticketStatus"];
             $feedBack['solution'] = $_POST["solutionInput"];
         }

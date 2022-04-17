@@ -38,7 +38,7 @@
           <div class="content-host-incident"></div>
           <div class="content-host-solution">
             <h3>Solution Information</h3>
-            <textarea id="solutionInput" name="solutionInput" rows="10" cols="30"></textarea>
+            <textarea id="solutionInput" name="solutionInput" rows="10" cols="30" placeholder="Type your solution..." onblur="if(this.value==''){this.placeholder='Type your solution...'}" onfocus="if(this.value==''){this.placeholder=''}"></textarea>
           </div>
         </div>
 
@@ -52,7 +52,7 @@
           </select>
         </div>
 
-        <input type="text" id="deleteThisTicket" name="deleteThisTicket">
+        <input type="text" id="activeTicket" name="activeTicket">
 
         <input type="submit" id="deleteTicketBtn" name="deleteTicketBtn" value="Delete Ticket">
         <input type="submit" id="updateTicketBtn" name="updateTicketBtn" value="Update Ticket">

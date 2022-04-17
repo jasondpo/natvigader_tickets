@@ -7,30 +7,29 @@ let green = "QRST";
 let yellow = "UVWX";
 let black = "YZ";
 $(".profileInitials").each(function(){
-    if(orange.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#f90")
+    let firstLetter = $(this).text().slice(0,1);
+    if(orange.includes(firstLetter)){
+        $(this).addClass("profileOrange")
     }
-    if(red.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#f30")
+    if(red.includes(firstLetter)){
+        $(this).addClass("profileRed")
     }
-    if(blue.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#3F8EBC")
+    if(blue.includes(firstLetter)){
+        $(this).addClass("profileBlue")
     }
-    if(purple.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#665BFF")
+    if(purple.includes(firstLetter)){
+        $(this).addClass("profilePurple")
     }
-    if(green.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#36CA00")
+    if(green.includes(firstLetter)){
+        $(this).addClass("profileGreen")
     }
-    if(yellow.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#FFE62B")
+    if(yellow.includes(firstLetter)){
+        $(this).addClass("profileYellow")
     }
-    if(black.includes($(this).text().slice(0,1))){
-        $(this).css("background-color","#000000")
+    if(black.includes(firstLetter)){
+        $(this).addClass("profileBlack")
     }
 });
-
-
 
 // Transfer Ticket Information into content-host sub DIVs
 var ticketNum;
@@ -39,6 +38,7 @@ var timeStamp;
 var subject;
 var message;
 var profile;
+var color;
 
 $('body').on('click', '.single-ticket-container', function() {
     ticketNum = $(this).find('.ticket').text();
@@ -47,12 +47,14 @@ $('body').on('click', '.single-ticket-container', function() {
     clerk = $(this).find('.clerkName').text();
     message = $(this).find('.comment').text();
     profile = $(this).find('.profileInitials').text();
+    color = $(this).find('.profileInitials').attr('class').split(' ')[1];
     $(".content-header").html(subject);
     $(".content-host-ticket-name").html(clerk);
     $(".content-host-ticket-timestamp").html(timeStamp);
     $(".content-host-incident").html(message);
-    $("#deleteThisTicket").val(ticketNum);
-    $(".content-host-profile").html(profile);
+    $("#activeTicket").val(ticketNum);
+    $(".content-host-profile").html(profile).removeClass().addClass('content-host-profile').addClass(color);
+    $("#solutionInput").val('');
 });
 
 function showDeletedTicketInfo(){
@@ -79,7 +81,7 @@ setInterval(function() {
             alert("File has changed")
         }
         previous = current;
-    });                       
+    });  
 }, 2000);   
 
 
@@ -149,12 +151,16 @@ matchingTickets.forEach(tickNo=>{
 
 // Show Ticket status
 function showTicketStatus(){
-    let getTicketNo = $("#deleteThisTicket").val();
+    let getTicketNo = $("#activeTicket").val();
     $.getJSON("ticket_data/ticket_data.json", function(data) {
         $.each(data, function(i, data){
             if(data.ticket==getTicketNo){
                 $("#ticketStatus").val(data.status);
-                $("#solutionInput").text(data.solution);
+                if(data.solution!=""){
+                    $("#solutionInput").val(data.solution);
+                }else{
+                    $("#solutionInput").val('').attr("placeholder", "Type your solution..."); 
+                };
             }
         });
     });  
